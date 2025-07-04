@@ -1,0 +1,43 @@
+Two Sum
+
+My solution with 0ms and 44.81 mb
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        for(int i=0, j=nums.length-1; i<nums.length&&j!=0; i++,j--){
+            int totalI = target - nums[i];
+            int totalJ = target - nums[j];
+            int countI = i+1;
+            int countJ = j-1;
+            while(countI<=nums.length-1){
+                if(nums[countI]==totalI){
+                    return new int[]{i,countI};
+                }else if(nums[countJ]==totalJ){
+                    return new int[]{countJ,j};
+                }else{
+                    countI++;
+                    countJ--;
+                }
+            }
+        }
+        return null;
+    }
+}
+
+
+Another solution
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        for(int i=0; i< nums.length; i++){
+            for(int j=i+1; j< nums.length; j++){
+                        if(target == (nums[i]+nums[j])){
+                            return new int[]{j,i};
+                        }
+                        else if(nums[(nums.length-1) - i] + nums[(nums.length-1) - j] == target)
+                        return new int[]{(nums.length-1) - i, (nums.length-1) - j};
+            }
+        }
+        return null;
+    }
+}
