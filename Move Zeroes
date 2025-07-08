@@ -1,0 +1,43 @@
+My solution took 2ms beats 80.42% and 46mb
+
+class Solution {
+    public void moveZeroes(int[] nums) {
+
+        if(nums.length!=1){
+            int countOfZero = 0;
+            int index = 0;
+            for(int i=0; i<nums.length; i++){
+                if(nums[i]!=0){
+                    if(countOfZero>=1){
+                        nums[index]=nums[i];
+                        nums[i]=0;
+                    }
+                    index++;
+                }else{
+                    countOfZero++;
+                }
+            }
+        }
+        
+    }
+
+ 
+More optimized way 1 ms
+
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int index = 0;  // Position to place the next non-zero element
+
+        // Move all non-zero elements to the front
+        for (int num : nums) {
+            if (num != 0) {
+                nums[index++] = num;
+            }
+        }
+
+        // Fill the rest with zeros
+        while (index < nums.length) {
+            nums[index++] = 0;
+        }
+    }
+}
