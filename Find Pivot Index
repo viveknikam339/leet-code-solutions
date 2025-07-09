@@ -1,18 +1,24 @@
 class Solution {
     public int pivotIndex(int[] nums) {
-        int leftSum=0;
-        int rightSum=0;
-        for(int i=nums.length-1;i>0;i--)
-        {
-            rightSum+=nums[i];
+        int leftSum = 0;
+        int rightSum = 0;
+
+        // Step 1: Calculate total right sum (excluding index 0)
+        for (int i = nums.length - 1; i > 0; i--) {
+            rightSum += nums[i];
         }
-        if(leftSum==rightSum) return 0;
-        for(int i=1;i<nums.length;i++)
-        {
-            rightSum-=nums[i];
-            leftSum+=nums[i-1];
-            if(leftSum==rightSum) return i;
+
+        // Step 2: Check if index 0 is pivot
+        if (leftSum == rightSum) return 0;
+
+        // Step 3: Move from index 1 to end
+        for (int i = 1; i < nums.length; i++) {
+            rightSum -= nums[i];       // Exclude current element from right side
+            leftSum += nums[i - 1];    // Include previous element to left side
+
+            if (leftSum == rightSum) return i;
         }
+
         return -1;
     }
 }
