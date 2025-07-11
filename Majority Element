@@ -1,0 +1,45 @@
+
+My solution took 12ms
+
+class Solution {
+    public int majorityElement(int[] nums) {
+        int majorityCount = nums.length/2;
+
+        HashMap<Integer, Integer> elements = new HashMap<>();
+
+        for(int num:nums){
+            Integer result = elements.get(num);
+            if(result!=null){
+
+                if(result==majorityCount){
+                    return num;
+                }
+
+                elements.put(num, result+1);
+
+            }else{
+                elements.put(num, 1);
+            }
+        }
+        return nums[0];
+    }
+}
+
+
+This solution took 3ms
+class Solution {
+    public int majorityElement(int[] nums) {
+        int count = 0;
+        Integer candidate = null;
+
+        for (int num : nums) {
+            if (count == 0) {
+                candidate = num;
+            }
+
+            count += (num == candidate) ? 1 : -1;
+        }
+
+        return candidate;
+    }
+}
